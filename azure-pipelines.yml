@@ -3,7 +3,7 @@ steps:
   name: scan
   continueOnError: true
   inputs:
-    Path: '.'
+    Path: './CFT'
     prismaCloudService: 'Stage'
     High: '100'
     Medium: '100'
