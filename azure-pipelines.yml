@@ -1,4 +1,40 @@
 steps:
+- task: Prisma Cloud IaC Scan@2
+  name: 'terraform12module_variable_files'
+  continueOnError: true
+  inputs:
+    Path: './scan/terraform12module_variable_files'
+    prismaCloudService: 'Stage'
+    High: '1'
+    Medium: '1'
+    Low: '1'
+    Operator: 'or'
+    Tags: 'env:qa,stage:test'
+
+- task: Prisma Cloud IaC Scan@2
+  name: 'terraform12module_variable_values'
+  continueOnError: true
+  inputs:
+    Path: './scan/terraform12module_variable_values'
+    prismaCloudService: 'Stage'
+    High: '1'
+    Medium: '1'
+    Low: '1'
+    Operator: 'or'
+    Tags: 'env:qa,stage:test'
+
+- task: Prisma Cloud IaC Scan@2
+  name: 'terraform12novariablemodule'
+  continueOnError: true
+  inputs:
+    Path: './scan/terraform12novariablemodule'
+    prismaCloudService: 'Stage'
+    High: '1'
+    Medium: '1'
+    Low: '1'
+    Operator: 'or'
+    Tags: 'env:qa,stage:test'
+    
 # - task: Prisma Cloud IaC Scan@2
 #   name: CFT_variable_files
 #   continueOnError: true
