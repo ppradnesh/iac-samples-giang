@@ -1,6 +1,6 @@
 steps:
 - task: Prisma Cloud IaC Scan@2
-  name: scan
+  name: CFT_variable_files
   continueOnError: true
   inputs:
     Path: './CFT_variable_files'
@@ -11,7 +11,7 @@ steps:
     Operator: 'or'
     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
-  name: scan
+  name: CFT_variable_values
   continueOnError: true
   inputs:
     Path: './CFT_variable_values'
@@ -22,7 +22,7 @@ steps:
     Operator: 'or'
     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
-  name: scan
+  name: tf12_variable_files
   continueOnError: true
   inputs:
     Path: './TF/tf12_variable_files'
@@ -33,7 +33,7 @@ steps:
     Operator: 'or'
     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
-  name: scan
+  name: tf12_variable_values
   continueOnError: true
   inputs:
     Path: './TF/tf12_variable_values'
