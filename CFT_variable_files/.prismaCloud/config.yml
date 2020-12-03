@@ -1,0 +1,10 @@
+template_type: CFT
+
+template_parameters:
+  variable_files:
+  - './cft_variables.json'
+
+tags:
+- Org:Engineering
+- Team:Shift_Left
+- Env:Dev

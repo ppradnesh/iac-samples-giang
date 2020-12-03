@@ -1,0 +1,12 @@
+template_type: CFT
+
+template_parameters:
+  variables:
+    cidr: 0.0.0.0/0
+    acl: public-read-write
+    AccessControl: PublicRead
+
+tags:
+- Org:Engineering
+- Team:Shift_Left
+- Env:Dev
