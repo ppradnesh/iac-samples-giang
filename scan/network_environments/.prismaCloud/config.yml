@@ -1,0 +1,55 @@
+# Template type. The valid values are TF, CFT, K8S
+# template_type: CFT
+# template_type: K8S
+template_type: TF
+
+# TF version
+# terraform_version: 0.11
+terraform_version: 0.12
+    
+# TF 11 Parameters
+# terraform_011_parameters:
+#   variable_files: 
+#   - scan/aws_two_tier/aws_vars.tf
+#   variable_values:
+#   - name: text
+#     value: abc
+
+# TF 12 Parameters
+terraform_012_parameters:
+- root_module: ./network_environments/
+  variable_files:
+  - ./network_environments/infrastructure/iac/environments/qa/variables.tfvars
+#- root_module: infrastructure/iac/environments/qa/variables.tfvars
+#- root_module: ./network_environments/infrastructure/iac/environments/qa/variables.tfvars
+# - root_module: scan/terraform12novariablemodule/
+# - root_module: scan/first-class-expressions/
+# - root_module: scan/for-each-for-resources/
+# - root_module: scan/new-template-syntax/
+# - root_module: scan/reliable-json-syntax/
+# - root_module: scan/for-expressions/
+# - root_module: scan/rich-value-types/
+# ## Variables
+# - root_module: scan/terraform12module/
+#   variable_files: 
+#   - 'scan/terraform12module/smelks.tfvars'
+#   variables:
+#   - name: check
+#     value: value
+# - root_module: scan/terraform12module_nested_1_lvl/terraform12module/
+#   variable_files: 
+#   - 'scan/terraform12module_nested_1_lvl/terraform12module/smelks.tfvars'    
+# - root_module: scan/advanced-dynamic-blocks/
+#   variable_files: 
+#   - 'scan/advanced-dynamic-blocks/terraform.tfvars'
+# - root_module: scan/rich-value-types/network/
+#   variable_files: 
+#   - 'scan/rich-value-types/network/variables.tf'  
+
+# CFT Parameters
+# cft_parameters:
+#   variable_values:
+#   - name: text
+#     value: abc
+tags:
+- FOLDER:network_environments

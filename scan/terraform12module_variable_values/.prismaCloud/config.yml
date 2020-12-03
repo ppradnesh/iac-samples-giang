@@ -1,12 +1,12 @@
+
 template_type: TF
 
 terraform_version: 0.12
 
 template_parameters:
   variables:
-    cidr: 0.0.0.0/0
-    acl: public-read-write
-
+    check: private
+    
 tags:
-- Org:Engineering
-- Team:Shift_Left
+- Org:Engineering2
+- Team:Shift_Left2

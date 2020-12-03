@@ -1,0 +1,89 @@
+{
+    "application_rule_collections": {
+        "base-it_cio_-_cyber_tech_and_dev": {
+            "name" : "base-it_cio_-_cyber_tech_and_dev",
+            "priority" : "100", 
+            "action"   : "Allow",
+            "rules" : [
+                 {
+                    "name": "ocsp.msocsp.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["ocsp.msocsp.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                },
+                {
+                    "name": "mscrl.microsoft.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["mscrl.microsoft.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                },
+                {
+                    "name": "crl.microsoft.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["crl.microsoft.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                },
+                {
+                    "name": "ocsp.digicert.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["ocsp.digicert.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                },
+                {
+                    "name": "crl3.digicert.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["crl3.digicert.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                },
+                {
+                    "name": "ctldl.windowsupdate.com",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "target_fqdns": ["ctldl.windowsupdate.com"],
+                    "protocol": [
+                        {
+                            "port" : "80",
+                            "type" : "Http"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

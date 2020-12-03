@@ -1,0 +1,8 @@
+
+template_type: TF
+
+terraform_version: 0.12
+    
+tags:
+- Org:Engineering2
+- Team:Shift_Left2

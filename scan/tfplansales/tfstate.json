@@ -1,0 +1,597 @@
+{
+  "version": 4,
+  "terraform_version": "0.12.28",
+  "serial": 0,
+  "lineage": "",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_acm_certificate",
+      "name": "deere_external",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:acm:us-east-1:509283902058:certificate/de327a56-0d59-471f-ae5c-eecb244edfab",
+            "domain": "*.qual.us.e01.c01.johndeerecloud.com",
+            "id": "2020-07-24 09:16:15.5364314 +0000 UTC",
+            "key_types": null,
+            "most_recent": true,
+            "statuses": [
+              "ISSUED"
+            ],
+            "tags": {
+              "Name": "acm_cert",
+              "component": "core-infra"
+            },
+            "types": [
+              "AMAZON_ISSUED"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "509283902058",
+            "arn": "arn:aws:sts::509283902058:assumed-role/ADFS-ISG-MARKETPLACE-DEVELOPER/1595582158427039900",
+            "id": "2020-07-24 09:16:06.4230516 +0000 UTC",
+            "user_id": "AROAJIJ33GMNYHOE66GPE:1595582158427039900"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "bin-update-dlq-policy",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "27809994",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowConsume\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:*\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service\"\n      }\n    }\n  ]\n}",
+            "override_json": null,
+            "policy_id": null,
+            "source_json": null,
+            "statement": [
+              {
+                "actions": [
+                  "sqs:*"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowConsume"
+              }
+            ],
+            "version": "2012-10-17"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "bin-update-queue-iam-policy",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2505256166",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowPublish\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:SendMessage\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      },\n      \"Condition\": {\n        \"ArnEquals\": {\n          \"aws:SourceArn\": \"arn:aws:sns:us-east-1:509283902058:isg-sales-activation-service-bin-update\"\n        }\n      }\n    },\n    {\n      \"Sid\": \"AllowConsume\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:*\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service\"\n      }\n    }\n  ]\n}",
+            "override_json": null,
+            "policy_id": null,
+            "source_json": null,
+            "statement": [
+              {
+                "actions": [
+                  "sqs:SendMessage"
+                ],
+                "condition": [
+                  {
+                    "test": "ArnEquals",
+                    "values": [
+                      "arn:aws:sns:us-east-1:509283902058:isg-sales-activation-service-bin-update"
+                    ],
+                    "variable": "aws:SourceArn"
+                  }
+                ],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "*"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowPublish"
+              },
+              {
+                "actions": [
+                  "sqs:*"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowConsume"
+              }
+            ],
+            "version": "2012-10-17"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "isg-sales-virtual-inventory-sync-dlq-policy",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "1091360525",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowConsume\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:*\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      }\n    }\n  ]\n}",
+            "override_json": null,
+            "policy_id": null,
+            "source_json": null,
+            "statement": [
+              {
+                "actions": [
+                  "sqs:*"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "*"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowConsume"
+              }
+            ],
+            "version": "2012-10-17"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "vi-sync-dlq-policy",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "27809994",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowConsume\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:*\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service\"\n      }\n    }\n  ]\n}",
+            "override_json": null,
+            "policy_id": null,
+            "source_json": null,
+            "statement": [
+              {
+                "actions": [
+                  "sqs:*"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowConsume"
+              }
+            ],
+            "version": "2012-10-17"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "vi-sync-queue-iam-policy",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "3907915292",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowPublish\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:SendMessage\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"*\"\n      }\n    },\n    {\n      \"Sid\": \"AllowConsume\",\n      \"Effect\": \"Allow\",\n      \"Action\": \"sqs:*\",\n      \"Resource\": \"*\",\n      \"Principal\": {\n        \"AWS\": \"arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service\"\n      }\n    }\n  ]\n}",
+            "override_json": null,
+            "policy_id": null,
+            "source_json": null,
+            "statement": [
+              {
+                "actions": [
+                  "sqs:SendMessage"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "*"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowPublish"
+              },
+              {
+                "actions": [
+                  "sqs:*"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service"
+                    ],
+                    "type": "AWS"
+                  }
+                ],
+                "resources": [
+                  "*"
+                ],
+                "sid": "AllowConsume"
+              }
+            ],
+            "version": "2012-10-17"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_role",
+      "name": "iam_role",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::509283902058:role/ISGSalesSystem/isg-sales-report-service",
+            "assume_role_policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":[\"application-autoscaling.amazonaws.com\",\"events.amazonaws.com\",\"ecs-tasks.amazonaws.com\"]},\"Action\":\"sts:AssumeRole\"},{\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::509283902058:oidc-provider/johndeere.okta.com/oauth2/aus5t5qxymhxumi2G1t7\"},\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"johndeere.okta.com/oauth2/aus5t5qxymhxumi2G1t7:sub\":\"0oabox0obroer5p4C1t7\"}}}]}",
+            "assume_role_policy_document": null,
+            "create_date": "2019-11-08T14:31:36Z",
+            "description": "",
+            "id": "isg-sales-report-service",
+            "max_session_duration": 3600,
+            "name": "isg-sales-report-service",
+            "path": "/ISGSalesSystem/",
+            "permissions_boundary": "",
+            "role_id": null,
+            "role_name": null,
+            "tags": {
+              "component": "isg-sales"
+            },
+            "unique_id": "AROAXNE5PUJVBKN45LSAK"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_route53_zone",
+      "name": "external_zone",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "caller_reference": "F20EE2DE-7C7F-14BA-871A-006C5DD1F7E7",
+            "comment": "",
+            "id": "ZLUQBT80D1Z8I",
+            "linked_service_description": null,
+            "linked_service_principal": null,
+            "name": "qual.us.e01.c01.johndeerecloud.com.",
+            "name_servers": [
+              "ns-1449.awsdns-53.org",
+              "ns-757.awsdns-30.net",
+              "ns-1914.awsdns-47.co.uk",
+              "ns-119.awsdns-14.com"
+            ],
+            "private_zone": false,
+            "resource_record_set_count": 204,
+            "tags": {},
+            "vpc_id": null,
+            "zone_id": "ZLUQBT80D1Z8I"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_security_group",
+      "name": "deere_internal_http",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:509283902058:security-group/sg-7d325006",
+            "description": "Inbound HTTP access from Deere internal network.",
+            "filter": [
+              {
+                "name": "group-name",
+                "values": [
+                  "deere-global-security-groups-vpc-17517472-DeereNetworkHTTP-*"
+                ]
+              }
+            ],
+            "id": "sg-7d325006",
+            "name": "deere-global-security-groups-vpc-17517472-DeereNetworkHTTP-W7O9Y3VS2T6A",
+            "tags": {
+              "Name": "DeereNetworkHTTP",
+              "component": "cloudsecurity",
+              "functionalArea": "prod:CloudSecurity:RP0032:SecurityGroups",
+              "name": "DeereNetworkHTTP:network",
+              "owner": "CloudSecurity:GSECCloudSecurity@JohnDeere.com:1"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_security_group",
+      "name": "deere_internal_https",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:509283902058:security-group/sg-7032500b",
+            "description": "Inbound HTTPS access from Deere internal network.",
+            "filter": [
+              {
+                "name": "group-name",
+                "values": [
+                  "deere-global-security-groups-vpc-17517472-DeereNetworkHTTPS-*"
+                ]
+              }
+            ],
+            "id": "sg-7032500b",
+            "name": "deere-global-security-groups-vpc-17517472-DeereNetworkHTTPS-17GPNLX197L8S",
+            "tags": {
+              "Name": "DeereNetworkHTTPS",
+              "component": "cloudsecurity",
+              "functionalArea": "prod:CloudSecurity:RP0032:SecurityGroups",
+              "name": "DeereNetworkHTTPS:network",
+              "owner": "CloudSecurity:GSECCloudSecurity@JohnDeere.com:1"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_security_group",
+      "name": "deere_open_http",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:509283902058:security-group/sg-69325012",
+            "description": "Inbound HTTP access from any network - for HTTPS redirect ONLY. Inbound web access from any network should always use HTTPS.",
+            "filter": [
+              {
+                "name": "group-name",
+                "values": [
+                  "deere-global-security-groups-vpc-17517472-DeereOpenHTTP-*"
+                ]
+              }
+            ],
+            "id": "sg-69325012",
+            "name": "deere-global-security-groups-vpc-17517472-DeereOpenHTTP-VIJW8ZU5DBTS",
+            "tags": {
+              "Name": "DeereOpenHTTP",
+              "component": "cloudsecurity",
+              "functionalArea": "prod:CloudSecurity:RP0032:SecurityGroups",
+              "name": "DeereOpenHTTP:network",
+              "owner": "CloudSecurity:GSECCloudSecurity@JohnDeere.com:1"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_security_group",
+      "name": "deere_open_https",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:509283902058:security-group/sg-63325018",
+            "description": "Inbound HTTPS access from any network",
+            "filter": [
+              {
+                "name": "group-name",
+                "values": [
+                  "deere-global-security-groups-vpc-17517472-DeereOpenHTTPS-*"
+                ]
+              }
+            ],
+            "id": "sg-63325018",
+            "name": "deere-global-security-groups-vpc-17517472-DeereOpenHTTPS-8KJFY5BTT4E1",
+            "tags": {
+              "Name": "DeereOpenHTTPS",
+              "component": "cloudsecurity",
+              "functionalArea": "prod:CloudSecurity:RP0032:SecurityGroups",
+              "name": "DeereOpenHTTPS:network",
+              "owner": "CloudSecurity:GSECCloudSecurity@JohnDeere.com:1"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_subnet_ids",
+      "name": "public_subnets",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "filter": null,
+            "id": "vpc-17517472",
+            "ids": [
+              "subnet-b48510ed",
+              "subnet-d7e25efc"
+            ],
+            "tags": {
+              "Name": "*PublicSubnet*"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_subnet_ids",
+      "name": "vpn_subnets",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "filter": null,
+            "id": "vpc-17517472",
+            "ids": [
+              "subnet-b78510ee",
+              "subnet-d6e25efd"
+            ],
+            "tags": {
+              "Name": "*PrivateSubnet*"
+            },
+            "vpc_id": "vpc-17517472"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_vpc",
+      "name": "isg_vpn",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:509283902058:vpc/vpc-17517472",
+            "cidr_block": "10.212.128.0/21",
+            "cidr_block_associations": [
+              {
+                "association_id": "vpc-cidr-assoc-caf513a3",
+                "cidr_block": "10.212.128.0/21",
+                "state": "associated"
+              }
+            ],
+            "default": false,
+            "dhcp_options_id": "dopt-5e5ccd26",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "filter": null,
+            "id": "vpc-17517472",
+            "instance_tenancy": "default",
+            "ipv6_association_id": null,
+            "ipv6_cidr_block": null,
+            "main_route_table_id": "rtb-dba193be",
+            "owner_id": "509283902058",
+            "state": "available",
+            "tags": {
+              "Name": "aws-isg-apps-qual-useast1-vpn",
+              "functionalArea": "qual:isg:RP0032:Vpc",
+              "owner": "Cloud Infrastructure Team:AWS-CloudOps@JohnDeere.com:"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

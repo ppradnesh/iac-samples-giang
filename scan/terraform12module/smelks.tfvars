@@ -1,0 +1,1 @@
+check = "public-read-write"

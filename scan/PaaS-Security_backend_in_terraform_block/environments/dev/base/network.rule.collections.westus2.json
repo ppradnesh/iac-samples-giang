@@ -1,0 +1,74 @@
+{
+    "network_rule_collections": {
+        "base-it_cio_-_cyber_tech_and_dev": {
+            "name" : "base-it_cio_-_cyber_tech_and_dev",
+            "priority" : "100",
+            "action"   : "Allow", 
+            "rules" : [
+                 {
+                    "name": "ntp",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public ip address",
+                    "destination_addresses": ["*"],
+                    "protocols": ["UDP"],
+                    "destination_ports":["123"]
+                },
+                {
+                    "name": "AzureActiveDirectory",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["AzureActiveDirectory"],
+                    "protocols": ["Any"],
+                    "destination_ports":["*"]
+                },
+                {
+                    "name": "AzureAdvancedThreatProtection",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["AzureAdvancedThreatProtection"],
+                    "protocols": ["Any"],
+                    "destination_ports":["*"]
+                },
+                {
+                    "name": "AzureMonitor",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["AzureMonitor.WestUS2"],
+                    "protocols": ["Any"],
+                    "destination_ports":["*"]
+                },
+                {
+                    "name": "AzureEventHub",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["EventHub.WestUS2"],
+                    "protocols": ["Any"],
+                    "destination_ports":["*"]
+                },
+                {
+                    "name": "AzureStorage",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["Storage.WestUS2"],
+                    "protocols": ["Any"],
+                    "destination_ports":["*"]
+                },
+                {
+                    "name": "AzureCloud",
+                    "source_type": "host name",
+                    "source_addresses": ["*"],
+                    "destination_type": "public domain name",
+                    "destination_addresses": ["AzureCloud"],
+                    "protocols": ["TCP"],
+                    "destination_ports":["1886","443"]
+                }
+            ]
+        }
+    }
+}
