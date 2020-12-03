@@ -1,15 +1,15 @@
 steps:
-- task: Prisma Cloud IaC Scan@2
-  name: CFT_variable_files
-  continueOnError: true
-  inputs:
-    Path: './CFT_variable_files'
-    prismaCloudService: 'Stage'
-    High: '100'
-    Medium: '100'
-    Low: '100'
-    Operator: 'or'
-    Tags: 'step:scan'
+# - task: Prisma Cloud IaC Scan@2
+#   name: CFT_variable_files
+#   continueOnError: true
+#   inputs:
+#     Path: './CFT_variable_files'
+#     prismaCloudService: 'Stage'
+#     High: '100'
+#     Medium: '100'
+#     Low: '100'
+#     Operator: 'or'
+#     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
   name: CFT_variable_values
   continueOnError: true
