@@ -1,1 +1,1 @@
-acl_file = "private"
+acl_file = "public-read-write"
