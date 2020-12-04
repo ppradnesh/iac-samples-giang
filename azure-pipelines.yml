@@ -69,7 +69,7 @@ steps:
     Operator: 'or'
     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
-  name: tf12_variable_values
+  name: tf12_nested_variable_files
   continueOnError: true
   inputs:
     Path: './TF/tf12_nested_variable_files'
