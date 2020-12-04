@@ -33,7 +33,7 @@ resource "aws_security_group" "allow_tcp" {
     to_port = 99
     protocol = "tcp"
     cidr_blocks = [
-      var.cidr_file]
+      "172.16.0.0/16"]
   }
 }
 
