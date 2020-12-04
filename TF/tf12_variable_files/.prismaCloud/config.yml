@@ -4,7 +4,6 @@ terraform_version: 0.12
 template_parameters:
   variable_files:
   - './smelks.tfvars'
-  - './network/smelks.tfvars'
 
 tags:
 - Org:Engineering
