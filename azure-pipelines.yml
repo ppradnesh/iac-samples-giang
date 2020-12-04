@@ -58,6 +58,17 @@ steps:
     Operator: 'or'
     Tags: 'step:scan'
 - task: Prisma Cloud IaC Scan@2
+  name: tf12_variable_values
+  continueOnError: true
+  inputs:
+    Path: './TF/tf12_variable_values'
+    prismaCloudService: 'Stage'
+    High: '1'
+    Medium: '1'
+    Low: '1'
+    Operator: 'or'
+    Tags: 'step:scan'
+- task: Prisma Cloud IaC Scan@2
   name: tf12_variable_files
   continueOnError: true
   inputs:
