@@ -1,6 +1,6 @@
 template_type: CFT
 
-template_parameters:
+cft_parameters:
   variables:
     AccessControl: PublicRead
 
