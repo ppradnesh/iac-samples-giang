@@ -1,0 +1,23 @@
+#template_type: TF
+#terraform_version: 0.12
+#
+#template_parameters:
+#  variable_files:
+#  - './smelks.tfvars'
+#
+#tags:
+#- Org:Engineering
+#- Team:Shift_Left
+#- Env:Dev
+
+template_type: TF
+
+terraform_version: 0.12
+
+template_parameters:
+  variable_files:
+  - './smelks.tfvars'
+
+tags:
+- Org:Engineering2
+- Team:Shift_Left2
